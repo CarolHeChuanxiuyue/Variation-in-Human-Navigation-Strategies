@@ -15,7 +15,6 @@ The article link will be updated here after this publication is available online
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.width=11, fig.height=5)
-setwd("~/Documents/Research/Forth_Year_Projects/TopicsCS/Jeff/Analysis")
 library(tidyverse)
 ```
 
