@@ -81,13 +81,13 @@ dfstrategy$Strategy <- as.factor(dfstrategy$Strategy)
 ```{r}
 ggplot(dfstrategy[dfstrategy$Instr=="Goto Goal",],aes(x=Strategy))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  scale_x_discrete(labels=c("Sur","Top","Rte","Rev","SurRte","TopRte","SurRev",
-                            "TopRev","RteSur","RteTop","RevSur","RevTop","SurTop","TopSur"))+
+  scale_x_discrete(labels=c("Survey","Topological","Route","Reverse","Sur-Rte","Top-Rte","Sur-Rev",
+                            "Top-Rev","Rte-Sur","Rte-Top","Rev-Sur","Rev-Top","Sur-Top","Top-Sur"))+
   ylab("Proportion")+
   xlab("Strategy")+
   ggtitle("A.Goto Goal Instruction")+
   theme_bw(base_size = 20)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),plot.title = element_text(hjust = 0.5))
 #ggsave("gotoGoal.png",width=12,height = 5)
 ```
 
@@ -95,13 +95,13 @@ ggplot(dfstrategy[dfstrategy$Instr=="Goto Goal",],aes(x=Strategy))+
 ```{r}
 ggplot(dfstrategy[dfstrategy$Instr=="Shortcut",],aes(x=Strategy))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  scale_x_discrete(labels=c("Sur","Top","Rte","Rev","SurRte","TopRte","SurRev",
-                            "TopRev","RteSur","RteTop","RevSur","RevTop","SurTop","TopSur"))+
+  scale_x_discrete(labels=c("Survey","Topological","Route","Reverse","Sur-Rte","Top-Rte","Sur-Rev",
+                            "Top-Rev","Rte-Sur","Rte-Top","Rev-Sur","Rev-Top","Sur-Top","Top-Sur"))+
   ylab("Proportion")+
   xlab("Strategy")+
   ggtitle("B.Shortcut Instruction")+
   theme_bw(base_size = 20)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),plot.title = element_text(hjust = 0.5))
 #ggsave("shortCut.png",width=12,height = 5)
 ```
 
@@ -120,8 +120,8 @@ dfs_sum
 ```{r}
 dfs_sum_w <- reshape2::dcast(dfs_sum, Strategy~Instr, value.var="n")
 dt <- as.table(t(as.matrix(dfs_sum_w[,-1])))
-colnames(dt) <-  c("Sur","Top","Rte","Rev","SurRte","TopRte","SurRev",
-                          "TopRev","RteSur","RteTop","RevSur","RevTop","SurTop","TopSur")
+colnames(dt) <-  c("Survey","Topological","Route","Reverse","Sur-Rte","Top-Rte","Sur-Rev",
+                            "Top-Rev","Rte-Sur","Rte-Top","Rev-Sur","Rev-Top","Sur-Top","Top-Sur")
 dt
 ```
 
@@ -186,9 +186,9 @@ ggplot(sv, aes(x=Instr, y=SV, fill=Instr,color=Instr))+
   scale_x_discrete(name = "Instructions",labels=c("Goto Goal","Shortcut"))+
   ylim(0.05,.97)+
   ylab("Strategy Variation")+
-  theme_ipsum(base_size = 20, axis_title_size = 20)+
+  theme_ipsum(base_size = 20, axis_title_size = 20,axis_title_just="m")+
   theme(
-      legend.position="none",
+      legend.position="none"
     )
 #ggsave("SV.png",width = 8,height = 5)
 ```
@@ -234,13 +234,14 @@ sim_sum_w
 ```{r}
 ggplot(sim[sim$Instr=="Goto Goal",],aes(x=Strategy))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  scale_x_continuous(name="Strategy", breaks =c(1:11),labels=c("Sur","Top","Rte","Rev","SurRte","TopRte","SurRev",
-                            "TopRev","RteSur","RteTop","RevSur"))+
+  scale_x_continuous(name="Strategy", breaks =c(1:11),labels=c("Survey","Topological","Route","Reverse","Sur-Rte","Top-Rte","Sur-Rev",
+                            "Top-Rev","Rte-Sur","Rte-Top","Rev-Sur"))+
   ylab("Proportion")+
   xlab("Strategy")+
   ggtitle("A.Simulation of Goto Goal")+
   theme_bw(base_size = 20)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),plot.title = element_text(hjust = 0.5))
+
 #ggsave("simgotoGoal.png",width=10,height = 5)
 ```
 
@@ -248,13 +249,13 @@ ggplot(sim[sim$Instr=="Goto Goal",],aes(x=Strategy))+
 ```{r}
 ggplot(sim[sim$Instr=="Shortcut",],aes(x=Strategy))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  scale_x_continuous(name="Strategy", breaks =c(1:11),labels=c("Sur","Top","Rte","Rev","SurRte","TopRte","SurRev",
-                            "TopRev","RteSur","RteTop","RevSur"))+
+  scale_x_continuous(name="Strategy", breaks =c(1:11),labels=c("Survey","Topological","Route","Reverse","Sur-Rte","Top-Rte","Sur-Rev",
+                            "Top-Rev","Rte-Sur","Rte-Top","Rev-Sur"))+
   ylab("Proportion")+
   xlab("Strategy")+
   ggtitle("B.Simulation of Shortcut")+
   theme_bw(base_size = 20)+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.text.x = element_text(angle = 45, hjust=1),plot.title = element_text(hjust = 0.5))
 #ggsave("simshortCut.png",width=10,height = 5)
 ```
 
